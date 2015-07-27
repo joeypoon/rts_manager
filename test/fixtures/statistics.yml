@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player_id: 1
+  micrmacro: 1
+  micro: 1
+  vt: 1
+  vz: 1
+  vp: 1
+
+two:
+  player_id: 1
+  micrmacro: 1
+  micro: 1
+  vt: 1
+  vz: 1
+  vp: 1

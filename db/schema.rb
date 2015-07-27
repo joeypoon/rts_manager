@@ -11,27 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726071508) do
+ActiveRecord::Schema.define(version: 20150727022014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "players", force: :cascade do |t|
     t.integer  "team_id"
-    t.string   "username",   default: "necessitatibus"
-    t.integer  "age",        default: 12
-    t.integer  "salary",     default: 1000
-    t.string   "race",       default: "z"
+    t.string   "username"
+    t.integer  "age"
+    t.integer  "salary"
+    t.string   "race"
     t.integer  "earnings",   default: 0
     t.integer  "wins",       default: 0
     t.integer  "losses",     default: 0
     t.boolean  "retired",    default: false
     t.boolean  "deleted",    default: false
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
-  add_index "players", ["team_id"], name: "index_players_on_team_id", using: :btree
+  add_index "players", ["username"], name: "index_players_on_username", using: :btree
+
+  create_table "statistics", force: :cascade do |t|
+    t.integer  "player_id"
+    t.integer  "macro"
+    t.integer  "micro"
+    t.integer  "vt"
+    t.integer  "vz"
+    t.integer  "vp"
+    t.integer  "talent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "statistics", ["player_id"], name: "index_statistics_on_player_id", using: :btree
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"

@@ -1,10 +1,15 @@
 <div class="container">
   <h2 class="page-header">Available Players</h2>
   <% @players.each do |player| %>
-    <%= div_for player do |p| %>
-      <%= p.username %>
-      <%= p.race %>
-      <%= p.age %>
-    <% end %>
+    <ul class="list-group">
+      <%= div_for player do |p| %>
+        <li class="list-group-item">
+          <%= link_to p.username, p %>
+          <%= p.race %>
+          <%= p.age %>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
+  <%= paginate @players %>
 </div>

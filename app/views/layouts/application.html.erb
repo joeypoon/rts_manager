@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<%= render 'layouts/nav' %>
+
 <% if notice %>
   <div class="alert alert-success">
     <%= notice %>
@@ -19,8 +21,6 @@
     <%= alert %>
   </div>
 <% end %>
-
-<%= render 'layouts/nav' %>
 
 <%= yield %>
 
