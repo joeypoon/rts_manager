@@ -1,0 +1,6 @@
+<div class="container">
+  <h1 class="page-header">Tournaments</h1>
+  <% @tournaments.each do |t| %>
+    <h4><%= link_to t.name.titleize, t %> <small><%= number_to_currency t.prize_pool %></small></h4>
+  <% end %>
+</div>

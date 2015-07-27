@@ -1,0 +1,6 @@
+<div class="container">
+  <h1 class="page-header"><%= @tournament.name.titleize %> <small><%= number_to_currency @tournament.prize_pool %></small></h1>
+  <% @tournament.teams.each do |t| %>
+    <h4><%= t.name %></h4>
+  <% end %>
+</div>

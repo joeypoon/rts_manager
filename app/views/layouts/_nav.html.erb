@@ -14,6 +14,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'Tournaments', tournaments_path %></li>
+        <li><%= link_to 'Teams', teams_path %></li>
+        <li><%= link_to 'Recruit', players_path %></li>
         <li><%= link_to 'New User', new_user_path %></li>
         <li><%= link_to 'Login', login_path %></li>
         <li><%= link_to 'Logout', logout_path, method: :delete %></li>

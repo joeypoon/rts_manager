@@ -5,7 +5,7 @@ class Player < ActiveRecord::Base
   scope :teamless, -> { where(team: nil) }
   scope :active, -> { where(retired: false) }
 
-  validates :username, uniqueness: true
+  validates :username, uniqueness: true, presence: true
 
   def self.create_player
     name = [Faker::App.name, Faker::Team.creature, Faker::Lorem.word].sample + [Faker::App.name, Faker::Team.creature, Faker::Lorem.word].sample

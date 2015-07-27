@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :tournaments, only: [:index, :show] do
+    resources :rounds, only: [:index, :show] do
+      resources :matches, only: [:index, :show]
+    end
+  end
   resources :players, only: [:index, :show] do
     post 'draft' => 'players#draft', on: :member
   end
