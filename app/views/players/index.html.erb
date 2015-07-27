@@ -1,0 +1,10 @@
+<div class="container">
+  <h2 class="page-header">Available Players</h2>
+  <% @players.each do |player| %>
+    <%= div_for player do |p| %>
+      <%= p.username %>
+      <%= p.race %>
+      <%= p.age %>
+    <% end %>
+  <% end %>
+</div>

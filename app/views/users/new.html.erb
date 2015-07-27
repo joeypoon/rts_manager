@@ -1,0 +1,11 @@
+<div class="col-md-8 col-md-offset-2">
+
+  <h2 class="page-header">New User</h2>
+
+  <%= simple_form_for @user do |f| %>
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+    <%= f.submit 'Create', class: 'btn btn-success' %>
+  <% end %>
+</div>

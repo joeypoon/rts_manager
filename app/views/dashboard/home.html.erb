@@ -1,0 +1,4 @@
+<div class="container">
+  <h1>Dashboard <small><%= @current_user.email %></small></h1>
+  <%= @team.name.titleize %> - <%= number_to_currency(@team.cash) %>
+</div>
