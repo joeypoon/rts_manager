@@ -1,6 +1,9 @@
 <div class="container">
   <h1 class="page-header"><%= @tournament.name.titleize %> <small><%= number_to_currency @tournament.prize_pool %></small></h1>
-  <% @tournament.teams.each do |t| %>
-    <h4><%= t.name %></h4>
+  <% unless @tournament.teams.include? @current_user.team.id %>
+    <%= link_to 'Join', join_tournament_path, class: 'btn btn-primary', method: :post %>
+  <% end %>
+  <% @teams.each do |t| %>
+    <h4><%= link_to t.name, t %></h4>
   <% end %>
 </div>

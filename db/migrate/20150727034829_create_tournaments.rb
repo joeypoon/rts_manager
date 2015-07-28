@@ -4,6 +4,7 @@ class CreateTournaments < ActiveRecord::Migration
       t.string :name
       t.integer :prize_pool
       t.string :winner
+      t.integer :teams, array: true, default: []
 
       t.timestamps null: false
     end

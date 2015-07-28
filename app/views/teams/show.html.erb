@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>Team Details <small><%= @team.name.titleize %></small></h1>
+  <h4>Wins: <%= @team.wins %> - Losses: <%= @team.losses %></h4>
+  <table class="table table-striped table-bordered">
+    <tr>
+      <th>Player</th>
+      <th>Race</th>
+      <th>Wins</th>
+      <th>Losses</th>
+      <th>Age</th>
+    </tr>
+    <% @team.players.each do |p| %>
+      <tr>
+        <td><%= link_to p.username, p %></td>
+        <td><%= p.race %></td>
+        <td><%= p.wins %></td>
+        <td><%= p.losses %></td>
+        <td><%= p.age %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

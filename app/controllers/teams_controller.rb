@@ -28,7 +28,12 @@ class TeamsController < ApplicationController
   end
 
   def index
-    @teams = Team.order('cash desc')
+    @teams = Team.order('cash desc').page(params[:page])
+  end
+
+  def rankings
+    @teams = Team.order('wins desc').page(params[:page])
+    render :index
   end
 
   private

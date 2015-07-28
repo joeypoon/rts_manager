@@ -1,6 +1,6 @@
 <div class="container">
   <h1 class="page-header">Teams</h1>
   <% @teams.each do |t| %>
-    <h4><%= t.name %> <small><%= number_to_currency(t.cash) %></small></h4>
+    <h3><%= link_to t.name, t %> <small>Wins: <%= t.wins %> - Losses: <%= t.losses %></small></h3>
   <% end %>
 </div>

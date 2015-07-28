@@ -2,6 +2,6 @@
   <td><%= p.race %></td>
   <td><%= p.wins %></td>
   <td><%= p.losses %></td>
-  <td><%= p.salary %></td>
+  <% if !@player.team || @current_user.team == p.team %><td><%= p.salary %></td><% end %>
   <td><%= p.age %></td>
 </tr>

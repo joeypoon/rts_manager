@@ -1,5 +1,6 @@
 <div class="container">
   <h1>Dashboard <small><%= @team.name.titleize %></small></h1>
+  <h4>Wins: <%= @team.wins %> - Losses: <%= @team.losses %></h4>
   <h4>Cash: <%= number_to_currency(@team.cash) %></h4>
   <h4>Operating Costs: <%= number_to_currency(@team.operating_costs) %></h4>
   <table class="table table-striped table-bordered">

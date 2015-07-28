@@ -6,6 +6,7 @@ class PlayersController < ApplicationController
   end
 
   def show
+    @current_user = current_user
     @player = player
   end
 

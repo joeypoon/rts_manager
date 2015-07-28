@@ -12,7 +12,7 @@
       <th>Race</th>
       <th>Wins</th>
       <th>Losses</th>
-      <th>Salary</th>
+      <% if !@player.team || @current_user.team == @player.team %><th>Salary</th><% end %>
       <th>Age</th>
     </tr>
     <%= render partial: 'players/profile_table', locals: { p: @player } %>
