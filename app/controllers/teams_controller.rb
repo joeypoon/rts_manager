@@ -5,7 +5,6 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new team_params
-    @team.cash = 10000
     @team.user_id = current_user.id
     if @team.save
       redirect_to players_path

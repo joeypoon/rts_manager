@@ -7,7 +7,7 @@ class TournamentsController < ApplicationController
 
   def show
     @tournament = tournament
-    @available_players = current_user.team.players.reject { |p| Player.where(id: @tournament.players).include? p }
+    @current_user = current_user
     @players = Player.where(id: @tournament.players)
   end
 
