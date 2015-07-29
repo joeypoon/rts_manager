@@ -8,21 +8,15 @@
 </head>
 <body>
 
-<%= render 'layouts/nav' %>
+  <%= render 'layouts/nav' %>
 
-<% if notice %>
-  <div class="alert alert-success">
-    <%= notice %>
+  <div id="alerts">
+    <%= render 'layouts/alerts' %>
   </div>
-<% end %>
 
-<% if alert %>
-  <div class="alert alert-danger">
-    <%= alert %>
+  <div id="main-content">
+    <%= yield %>
   </div>
-<% end %>
-
-<%= yield %>
 
 </body>
 </html>

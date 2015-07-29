@@ -1,6 +1,4 @@
 <div class="container">
   <h1 class="page-header">Teams</h1>
-  <% @teams.each do |t| %>
-    <h3><%= link_to t.name, t %> <small>Wins: <%= t.wins %> - Losses: <%= t.losses %></small></h3>
-  <% end %>
+  <%= render partial: 'teams/list', locals: { teams: @teams } %>
 </div>

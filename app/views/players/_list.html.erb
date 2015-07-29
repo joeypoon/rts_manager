@@ -1,0 +1,26 @@
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>Username</th>
+    <th>Team</th>
+    <th>Race</th>
+    <th>Age</th>
+    <th>Wins</th>
+    <th>Losses</th>
+  </tr>
+  <% players.each do |player| %>
+    <%= div_for player do |p| %>
+      <tr>
+        <td><%= link_to p.username, p %></td>
+        <% if p.team %>
+          <td><%= link_to p.team.name, p.team %></td>
+        <% else %>
+          <td>Teamless</td>
+        <% end %>
+        <td><%= p.race %></td>
+        <td><%= p.age %></td>
+        <td><%= p.wins %></td>
+        <td><%= p.losses %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

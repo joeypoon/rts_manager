@@ -14,3 +14,11 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require_tree .
+
+function showAlert(content) {
+  $('.alert-success').html(content);
+  $('#alert').show();
+  return setTimeOut((function() {
+    $('#alert').hide();
+  }), 100);
+};

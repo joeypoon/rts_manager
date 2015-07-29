@@ -1,22 +1,23 @@
 class Tournament < ActiveRecord::Base
-  has_many :rounds
-
+  has_many :matches
   scope :upcoming, -> { where(winner: nil) }
 
   validates :name, uniqueness: true, presence: true
 
-  def setup_rounds
-    teams = self.teams
-    i = 0
-    j = 1
-    while i < teams.count
-      while j < teams.count
-        Round.create!(tournament_id: self.id, team_one: teams[i], team_two: teams[j])
-        j += 1
-      end
-
-      i += 1
-      j = i + 1
+  def start
+    setup_matches(self)
+    self.matches.each do |m|
+      m.play
     end
   end
+
+  private
+    def setup_matches(tournament)
+      players = tournament.players
+      while players.count >= 2
+        player_one = players.delete(players.sample)
+        player_two = players.delete(players.sample)
+        Match.create!(tournament_id: tournament.id, player_one: player_one, player_two: player_two)
+      end
+    end
 end

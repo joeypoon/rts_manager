@@ -1,17 +1,15 @@
 Rails.application.routes.draw do
   resources :tournaments, only: [:index, :show] do
     post 'join' => 'tournaments#join', on: :member
-    resources :rounds, only: [:index, :show] do
-      resources :matches, only: [:index, :show]
-    end
+    patch 'join' => 'tournaments#join', on: :member
+    resources :matches, only: [:index, :show]
   end
   resources :players, only: [:index, :show] do
     post 'draft' => 'players#draft', on: :member
+    get 'rankings' => 'players#rankings', on: :collection
   end
 
-  resources :teams do
-    get 'rankings' => 'teams#rankings', on: :collection
-  end
+  resources :teams
   resources :users, except: [:index, :show]
 
   root 'dashboard#home'

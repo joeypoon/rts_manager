@@ -1,6 +1,19 @@
 <div class="container">
-  <h1 class="page-header">Tournaments</h1>
-  <% @tournaments.each do |t| %>
-    <h4><%= link_to t.name.titleize, t %> <small><%= number_to_currency t.prize_pool %></small></h4>
-  <% end %>
+  <h1 class="page-header">Upcoming Tournaments</h1>
+  <table class="table table-striped table-bordered">
+    <tr>
+      <th>Name</th>
+      <th>Prize Pool</th>
+      <th>Players</th>
+    </tr>
+    <% @tournaments.each do |tournament| %>
+      <%= div_for tournament do |t| %>
+        <tr>
+          <td><%= link_to t.name, t %></td>
+          <td><%= number_to_currency t.prize_pool %></td>
+          <td><%= t.players.count %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
 </div>

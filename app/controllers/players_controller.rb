@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user, except: :rankings
 
   def index
     @players = players
@@ -14,14 +14,14 @@ class PlayersController < ApplicationController
     @player = player
     @player.team = current_user.team
     if @player.save
-      if current_user.team.players.count < 5
-        redirect_to players_path, notice: "#{@player.username} joined #{current_user.team.name}"
-      else
-        redirect_to root_path, notice: "#{@player.username} joined #{current_user.team.name}"
-      end
+      redirect_to root_path, notice: "#{@player.username} joined #{current_user.team.name}"
     else
       redirect_to players_path, alert: 'Recruitment failed'
     end
+  end
+
+  def rankings
+    @players = Player.where("wins > ?", 0).order('wins desc').page(params[:page])
   end
 
   private

@@ -2,4 +2,4 @@
   Player.create_player
 end
 
-tournament = Tournament.create!(name: 'Proleague', prize_pool: 1000000)
+tournament = Tournament.create!(name: 'GSL', prize_pool: 1000000)
