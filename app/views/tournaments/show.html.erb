@@ -1,12 +1,17 @@
 <div class="container">
   <h1 class="page-header"><%= @tournament.name %> <small><%= number_to_currency @tournament.prize_pool %></small></h1>
-    <% unless already_entered? @tournament, @current_user.team %>
+    <% unless already_entered?(@tournament, @current_user.team) || (@tournament.players.count >= @tournament.max_players) %>
       <div class="col-md-6">
           <%= simple_form_for @tournament, url: join_tournament_path, class: 'form-inline' do |f| %>
             <%= f.input :players, collection: @current_user.team.players, label_method: :username, include_blank: false %>
             <%= f.submit 'Join', class: 'btn btn-primary' %>
           <% end %>
       </div>
+    <% end %>
+    <% if @tournament.played %>
+      <div class="clearfix"></div>
+      <br>
+      <%= render partial: 'tournaments/results', locals: { rounds: @tournament.rounds } %>
     <% end %>
     <div class="clearfix"></div>
     <br>

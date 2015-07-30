@@ -31,6 +31,14 @@ class Match < ActiveRecord::Base
     self.save
   end
 
+  def p1
+    Player.find_by id: self.player_one
+  end
+
+  def p2
+    Player.find_by id: self.player_two
+  end
+
   private
 
     def v_tree(p1, p2)
