@@ -1,10 +1,10 @@
 class Match < ActiveRecord::Base
-  belongs_to :tournament
+  belongs_to :round
 
   def play
-    macro_multipler = 2.3
-    micro_multiplier = 1.7
-    v_multiplier = 1.5
+    macro_multipler = 3
+    micro_multiplier = 2.3
+    v_multiplier = 1.8
     p1 = Player.includes(:statistic).find_by id: self.player_one
     p2 = Player.includes(:statistic).find_by id: self.player_two
     p1_race = p1.race.downcase
@@ -26,7 +26,7 @@ class Match < ActiveRecord::Base
              else
                win_count(p2, p1)
              end
-    self.winner = winner.username
+    self.winner = winner.id
     puts winner.username
     self.save
   end

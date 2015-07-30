@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rounds
   resources :tournaments, only: [:index, :show] do
     post 'join' => 'tournaments#join', on: :member
     patch 'join' => 'tournaments#join', on: :member
