@@ -1,8 +1,10 @@
 <% unless round.finals? %>
-  <tr>
-    <td>Walkover</td>
-    <% round.list_walk_overs.each do |p| %>
-      <td><%= link_to p.username, p %></td>
-    <% end %>
-  </tr>
+  <table class="table table-striped table-bordered">
+    <tr>
+      <td>Walkover</td>
+      <% round.list_walk_overs.each do |p| %>
+        <td><%= link_to p.username, p %></td>
+      <% end %>
+    </tr>
+  </table>
 <% end %>

@@ -11,12 +11,12 @@
     <% if @tournament.played %>
       <div class="clearfix"></div>
       <br>
-      <%= render partial: 'tournaments/results', locals: { rounds: @tournament.rounds } %>
+      <%= render partial: 'tournaments/results', locals: { rounds: @tournament.rounds.order(round_number: :asc) } %>
     <% end %>
     <div class="clearfix"></div>
     <br>
     <h3>Registered Players: <%= @players.count %></h3>
     <div class="">
-      <%= render partial: 'players/list', locals: { players: @players } %>
+      <%= render partial: 'players/list', locals: { players: @players.order(wins: :desc, losses: :asc) } %>
     </div>
 </div>
