@@ -16,4 +16,23 @@
       <% end %>
     <% end %>
   </table>
+
+  <h1 class="page-header">Recent Tournaments</h1>
+  <table class="table table-striped table-bordered">
+    <tr>
+      <th>Name</th>
+      <th>Prize Pool</th>
+      <th>Winner</th>
+    </tr>
+    <% @recent.each do |tournament| %>
+      <%= div_for tournament do |t| %>
+        <tr>
+          <td><%= link_to t.name, t %></td>
+          <td><%= number_to_currency t.prize_pool %></td>
+          <% winner = Player.find_by(id: t.winner) %>
+          <td><%= link_to winner.username, winner %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
 </div>

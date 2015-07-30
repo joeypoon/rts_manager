@@ -17,11 +17,11 @@ class Round < ActiveRecord::Base
       while players.count >= 2
         player_one = players.shift
         player_two = players.shift
+        if players.count == 1
+          self.winners << players.last
+          self.save
+        end
         self.matches.create player_one: player_one, player_two: player_two
       end
-    end
-
-    def finals?
-      self.players.count == 2
     end
 end

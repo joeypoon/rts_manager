@@ -3,6 +3,7 @@ class TournamentsController < ApplicationController
 
   def index
     @tournaments = Tournament.upcoming
+    @recent = Tournament.recent.limit(10)
   end
 
   def show

@@ -1,6 +1,7 @@
 class Tournament < ActiveRecord::Base
   has_many :rounds
-  scope :upcoming, -> { where(winner: nil) }
+  scope :upcoming, -> { where(played: false) }
+  scope :recent, -> { where(played: true) }
 
   validates :name, uniqueness: true, presence: true
 
@@ -20,6 +21,7 @@ class Tournament < ActiveRecord::Base
         round_number += 1
       end
       self.winner = self.rounds.last.winners.last
+      self.played = true
       self.save
     end
 end

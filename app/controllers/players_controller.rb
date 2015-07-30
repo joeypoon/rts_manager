@@ -21,7 +21,7 @@ class PlayersController < ApplicationController
   end
 
   def rankings
-    @players = Player.where("wins > ?", 0).order('wins desc').page(params[:page])
+    @players = Player.where("wins > ?", 0).order(wins: :desc, losses: :asc).page(params[:page])
   end
 
   private
