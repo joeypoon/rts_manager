@@ -3,10 +3,19 @@ class Tournament < ActiveRecord::Base
   scope :upcoming, -> { where(played: false) }
   scope :recent, -> { where(played: true) }
 
-  validates :name, uniqueness: true, presence: true
+  validates :name, presence: true
 
   def start
     start_rounds
+  end
+
+  def max_players?
+    self.players.count >= self.max_players
+  end
+
+  def self.generate(name, prize)
+    number = Tournament.where(name: name).count + 1
+    Tournament.create(name: "#{name} #{number}", prize_pool: prize)
   end
 
   private

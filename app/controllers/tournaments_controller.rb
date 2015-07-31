@@ -15,13 +15,16 @@ class TournamentsController < ApplicationController
   def join
     player = Player.find_by id: tournament_params[:players]
     @tournament = tournament
-    unless @tournament.players.include? player.id
+    unless @tournament.max_players? || @tournament.players.include?(player.id)
       @tournament.players << player.id
-    end
-
-    if @tournament.save
-      flash.now[:notice] = "#{player.username} has joined #{@tournament.name}"
-      redirect_to :back
+      if @tournament.save
+        flash.now[:notice] = "#{player.username} has joined #{@tournament.name}"
+        if @tournament.max_players?
+          @tournament.start
+          Tournament.generate @tournament.name, @tournament.prize_pool
+        end
+        redirect_to :back
+      end
     else
       flash.now[:alert] = "Error"
       @players = @tournament.players
