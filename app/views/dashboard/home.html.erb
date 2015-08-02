@@ -11,6 +11,8 @@
       <th>Losses</th>
       <th>Salary</th>
       <th>Age</th>
+      <th>Earnings</th>
+      <th>Fire</th>
     </tr>
     <% @team.players.each do |p| %>
       <tr>
@@ -20,6 +22,14 @@
         <td><%= p.losses %></td>
         <td><%= p.salary %></td>
         <td><%= p.age %></td>
+        <td><%= p.earnings %></td>
+        <td>
+          <%= link_to remove_player_path(player_id: p.id), method: :delete, 'data-confirm': 'Are you sure?' do %>
+            <button type="button" name="button" class="btn btn-danger">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </button>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </table>

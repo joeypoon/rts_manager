@@ -21,13 +21,13 @@ class PlayersController < ApplicationController
   end
 
   def rankings
-    @players = Player.where("wins > ?", 0).order(wins: :desc, losses: :asc).page(params[:page])
+    @players = Player.where("wins > ?", 0).sort_by_wins.limit(50)
   end
 
   private
 
     def players
-      Player.active.teamless.order('created_at desc').page(params[:page])
+      Player.active.teamless.sort_by_wins.page(params[:page])
     end
 
     def player

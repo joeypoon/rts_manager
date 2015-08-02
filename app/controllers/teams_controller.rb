@@ -30,6 +30,15 @@ class TeamsController < ApplicationController
     @teams = Team.order('cash desc').page(params[:page])
   end
 
+  def remove_player
+    team = current_user.team
+    player = Player.find_by id: params[:player_id]
+    player.leave_team
+    team.players.delete player
+    team.save
+    redirect_to root_path
+  end
+
   private
 
     def team_params

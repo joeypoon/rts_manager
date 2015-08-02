@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   end
 
   resources :teams
+  delete 'remove/:player_id' => 'teams#remove_player', as: :remove_player
+
   resources :users, except: [:index, :show]
 
   root 'dashboard#home'

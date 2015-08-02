@@ -6,6 +6,7 @@
     <th>Age</th>
     <th>Wins</th>
     <th>Losses</th>
+    <th>Earnings</th>
   </tr>
   <% players.each do |player| %>
     <%= div_for player do |p| %>
@@ -20,6 +21,7 @@
         <td><%= p.age %></td>
         <td><%= p.wins %></td>
         <td><%= p.losses %></td>
+        <td><%= p.earnings %></td>
       </tr>
     <% end %>
   <% end %>

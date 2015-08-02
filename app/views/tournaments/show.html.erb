@@ -17,6 +17,6 @@
     <br>
     <h3>Registered Players: <%= @players.count %></h3>
     <div class="">
-      <%= render partial: 'players/list', locals: { players: @players.order(wins: :desc, losses: :asc) } %>
+      <%= render partial: 'players/list', locals: { players: @players } %>
     </div>
 </div>

@@ -6,7 +6,7 @@ class Tournament < ActiveRecord::Base
   validates :name, presence: true
 
   def start
-    start_rounds
+    play_rounds
   end
 
   def max_players?
@@ -20,7 +20,7 @@ class Tournament < ActiveRecord::Base
 
   private
 
-    def start_rounds
+    def play_rounds
       players = self.players.shuffle
       round_number = 1
       while players.count > 1
@@ -29,8 +29,28 @@ class Tournament < ActiveRecord::Base
         players = round.winners
         round_number += 1
       end
-      self.winner = self.rounds.last.winners.last
+
+      champ = Player.find_by id: self.rounds.last.winners.last
+      self.winner = champ.username
+      champ.earnings += self.prize_pool
+      if champ.team
+        champ.team.cash += (self.prize_pool * 0.10)
+        champ.team.save
+      end
+      champ.save
       self.played = true
       self.save
+    end
+
+    def award_money
+      self.rounds.reverse.each do |r|
+        r.players.each do |p|
+          #TODO
+          # 15 ro16
+          # 30 ro8
+          # 60 ro4
+          # 280 f
+        end
+      end
     end
 end
