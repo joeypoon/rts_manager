@@ -9,6 +9,7 @@ class TeamsController < ApplicationController
     if @team.save
       redirect_to players_path
     else
+      flash.now[:alert] = @team.errors
       render :new
     end
   end

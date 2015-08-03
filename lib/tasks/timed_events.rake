@@ -4,7 +4,9 @@ namespace :timed do
   task :tournament => :environment do
     while true
       sleep 1.hour
-      Tournament.upcoming.first.start
+      tournament = Tournament.upcoming.first
+      puts "Starting #{tournament.name}..."
+      tournament.start
     end
   end
 
@@ -12,14 +14,11 @@ namespace :timed do
   task :tournament => :environment do
     while true
       sleep 4.hours
-      Team.each do |t|
-        t.cash -= t.operating_costs
-        t.save
-      end
+      Team.subtract_costs
     end
   end
 
   desc "run all timed events"
-  task :all => [:tournament]
+  task :all => [:tournament, ]
 
 end

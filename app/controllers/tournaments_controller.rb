@@ -9,7 +9,7 @@ class TournamentsController < ApplicationController
   def show
     @tournament = tournament
     @current_user = current_user
-    @players = Player.where(id: @tournament.players).order(wins: :desc, losses: :asc)
+    @players = Player.where(id: @tournament.players).sort_by_wins
   end
 
   def join

@@ -1,7 +1,7 @@
 class Player < ActiveRecord::Base
   belongs_to :team
 
-  scope :teamless, -> { where(team: nil) }
+  scope :teamless, -> { where(team_id: nil) }
   scope :active, -> { where(retired: false) }
   scope :sort_by_wins, -> { order(wins: :desc, losses: :asc) }
 
