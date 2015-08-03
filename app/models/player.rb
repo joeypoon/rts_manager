@@ -10,7 +10,7 @@ class Player < ActiveRecord::Base
   def self.create_player
     name = [Faker::App.name, Faker::Team.creature, Faker::Lorem.word].sample + [Faker::App.name, Faker::Team.creature, Faker::Lorem.word].sample
     race = [:Z, :T, :P].sample
-    age = (12..20).to_a.sample
+    age = (11..20).to_a.sample
     salary = (700..1500).to_a.sample
     talent = (1..100).to_a.sample
     vt = (30..70).to_a.sample
@@ -93,7 +93,7 @@ class Player < ActiveRecord::Base
     end
 
     def raise_stat stat, opponent
-      stat_multiplier = 0.03
+      stat_multiplier = 0.01
       if stat == "macro"
         self.macro += (talent * stat_multiplier) * (opponent.macro * stat_multiplier)
       elsif stat == "micro"

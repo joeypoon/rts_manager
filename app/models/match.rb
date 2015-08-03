@@ -19,6 +19,8 @@ class Match < ActiveRecord::Base
                win_count(p2, p1)
              end
     self.winner = winner.id
+    p1.raise_stats p2
+    p2.raise_stats p1
     self.save
   end
 
