@@ -15,7 +15,8 @@ class Tournament < ActiveRecord::Base
   end
 
   def self.generate(name, prize)
-    number = Tournament.where(name: name).count + 1
+    name.gsub!(/\d+/,'')
+    number = Tournament.where("name @@ :n", n: name).count + 1
     Tournament.create(name: "#{name} #{number}", prize_pool: prize)
   end
 
@@ -33,11 +34,6 @@ class Tournament < ActiveRecord::Base
 
       champ = Player.find_by id: self.rounds.last.winners.last
       self.winner = champ.username
-      # champ.earnings += self.prize_pool
-      # if champ.team
-      #   champ.team.cash += (self.prize_pool * 0.10)
-      #   champ.team.save
-      # end
       champ.save
       self.played = true
       self.save

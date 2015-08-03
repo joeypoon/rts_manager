@@ -29,7 +29,7 @@
         <tr>
           <td><%= link_to t.name, t %></td>
           <td><%= number_to_currency t.prize_pool %></td>
-          <% winner = Player.find_by(id: t.winner) %>
+          <% winner = Player.find_by(username: t.winner) %>
           <td><%= link_to winner.username, winner %></td>
         </tr>
       <% end %>
