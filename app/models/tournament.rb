@@ -1,13 +1,14 @@
 class Tournament < ActiveRecord::Base
   has_many :rounds
-  scope :upcoming, -> { where(played: false) }
-  scope :recent, -> { where(played: true) }
+  scope :upcoming, -> { where(played: false).order(created_at: :asc) }
+  scope :recent, -> { where(played: true).order(updated_at: :desc) }
 
   validates :name, presence: true
 
   def start
     play_rounds
     award_money
+    Tournament.generate(self.name, self.prize)
   end
 
   def max_players?
@@ -33,11 +34,6 @@ class Tournament < ActiveRecord::Base
 
       champ = Player.find_by id: self.rounds.last.winners.last
       self.winner = champ.username
-      # champ.earnings += self.prize_pool
-      # if champ.team
-      #   champ.team.cash += (self.prize_pool * 0.10)
-      #   champ.team.save
-      # end
       champ.save
       self.played = true
       self.save
