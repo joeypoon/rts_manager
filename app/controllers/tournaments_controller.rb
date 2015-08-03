@@ -17,14 +17,11 @@ class TournamentsController < ApplicationController
     @tournament = tournament
     unless @tournament.max_players? || @tournament.players.include?(player.id)
       @tournament.players << player.id
-      if @tournament.save
-        flash.now[:notice] = "#{player.username} has joined #{@tournament.name}"
-        if @tournament.max_players?
-          @tournament.start
-          Tournament.generate @tournament.name, @tournament.prize_pool
-        end
-        redirect_to :back
-      end
+    end
+
+    if @tournament.save
+      flash.now[:notice] = "#{player.username} has joined #{@tournament.name}"
+      redirect_to :back
     else
       flash.now[:alert] = "Error"
       @players = @tournament.players
