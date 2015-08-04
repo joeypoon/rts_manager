@@ -4,6 +4,7 @@ class Player < ActiveRecord::Base
   scope :teamless, -> { where(team_id: nil) }
   scope :active, -> { where(retired: false) }
   scope :sort_by_wins, -> { order(wins: :desc, losses: :asc) }
+  scope :retirement_age, -> { where('age >= 25') }
 
   validates :username, uniqueness: true, presence: true
 
@@ -68,6 +69,14 @@ class Player < ActiveRecord::Base
   def micro_grade
     skill_grade(self.micro)
   end
+  #
+  # def self.advance_age
+  #   Player.update_all('age = age + 1')
+  # end
+  #
+  # def self.retirement_chance
+  #   players = Player.retirement_age.active
+  # end
 
   private
 

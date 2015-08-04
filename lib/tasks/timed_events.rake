@@ -1,24 +1,19 @@
 namespace :timed do
 
-  desc "run tournament timed events"
+  desc "run tournament timed event"
   task :tournament => :environment do
-    while true
-      sleep 1.hour
-      tournament = Tournament.upcoming.first
-      puts "Starting #{tournament.name}..."
-      tournament.start
-    end
+    tournament = Tournament.upcoming.first
+    puts "Starting #{tournament.name}..."
+    tournament.start
   end
 
-  desc "run tournament timed events"
-  task :tournament => :environment do
-    while true
-      sleep 4.hours
-      Team.subtract_costs
-    end
+  desc "run team costs timed event"
+  task :team_costs => :environment do
+    Team.subtract_costs
   end
 
-  desc "run all timed events"
-  task :all => [:tournament, ]
-
+  # desc "run player age advance timed event"
+  # task :advance_age => :environment do
+  #   Player.advance_age
+  # end
 end
