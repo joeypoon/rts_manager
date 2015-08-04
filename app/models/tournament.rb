@@ -1,14 +1,16 @@
 class Tournament < ActiveRecord::Base
   has_many :rounds
   scope :upcoming, -> { where(played: false).order(created_at: :asc) }
-  scope :recent, -> { where(played: true).order(updated_at: :desc) }
+  scope :recent, -> { where(played: true).order(updated_at: :asc) }
 
   validates :name, presence: true
 
   def start
-    play_rounds
-    award_money
-    Tournament.generate(self.name, self.prize_pool)
+    if self.players.count >= 4
+      play_rounds
+      award_money
+      Tournament.generate(self.name, self.prize_pool)
+    end
   end
 
   def max_players?
