@@ -1,7 +1,7 @@
 class Tournament < ActiveRecord::Base
   has_many :rounds
   scope :upcoming, -> { where(played: false).order(created_at: :asc) }
-  scope :recent, -> { where(played: true).order(updated_at: :asc) }
+  scope :recent, -> { where(played: true).order(updated_at: :desc) }
 
   validates :name, presence: true
 
