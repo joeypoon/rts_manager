@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804033109) do
+ActiveRecord::Schema.define(version: 20150804211610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,20 +63,6 @@ ActiveRecord::Schema.define(version: 20150804033109) do
 
   add_index "rounds", ["tournament_id"], name: "index_rounds_on_tournament_id", using: :btree
 
-  create_table "statistics", force: :cascade do |t|
-    t.integer  "player_id"
-    t.integer  "macro"
-    t.integer  "micro"
-    t.integer  "vt"
-    t.integer  "vz"
-    t.integer  "vp"
-    t.integer  "talent"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "statistics", ["player_id"], name: "index_statistics_on_player_id", using: :btree
-
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.integer  "cash",       default: 10000
@@ -110,6 +96,7 @@ ActiveRecord::Schema.define(version: 20150804033109) do
     t.boolean  "deleted",         default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.string   "token"
   end
 
 end

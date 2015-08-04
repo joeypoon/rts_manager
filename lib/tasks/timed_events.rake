@@ -16,4 +16,9 @@ namespace :timed do
   # task :advance_age => :environment do
   #   Player.advance_age
   # end
+
+  # desc "generate players timed event"
+  # task :generate_platers => :environment do
+  #   Player.generate
+  # end
 end
