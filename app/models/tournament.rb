@@ -8,7 +8,7 @@ class Tournament < ActiveRecord::Base
   def start
     play_rounds
     award_money
-    Tournament.generate(self.name, self.prize)
+    Tournament.generate(self.name, self.prize_pool)
   end
 
   def max_players?
